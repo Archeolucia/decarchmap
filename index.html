@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="http://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <script src="data/Amphitheatres_0.js"></script>
+        <script src="data/Theatres_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:2
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>,<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash;Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_Amphitheatres_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">city</th>\
+                        <td>' + (feature.properties['city'] !== null ? Autolinker.link(String(feature.properties['city'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">country</th>\
+                        <td>' + (feature.properties['country'] !== null ? Autolinker.link(String(feature.properties['country'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">located</th>\
+                        <td>' + (feature.properties['located'] !== null ? Autolinker.link(String(feature.properties['located'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">visible</th>\
+                        <td>' + (feature.properties['visible'] !== null ? Autolinker.link(String(feature.properties['visible'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                            <td colspan="2">\
+                                <div class="your-class">';
+                                    if (feature.properties.media) popupContent += '<img   height="250px" src="' + (feature.properties['media'] !== null ? feature.properties['media'] : '') + '">';
+                                    if (feature.properties.media2) popupContent += '<img  height="250px" src="' + (feature.properties['media2'] !== null ? feature.properties['media2'] : '') + '">';
+                                    if (feature.properties.media3) popupContent += '<img  height="250px" src="' + (feature.properties['media3'] !== null ? feature.properties['media3'] : '') + '">';
+                                    if (feature.properties.media4) popupContent += '<img  height="250px" src="' + (feature.properties['media4'] !== null ? feature.properties['media4'] : '') + '">';
+                                    if (feature.properties.media5) popupContent += '<img  height="250px" src="' + (feature.properties['media5'] !== null ? feature.properties['media5'] : '') + '">';
+                                    if (feature.properties.media6) popupContent += '<img  height="250px" src="' + (feature.properties['media6'] !== null ? feature.properties['media6'] : '') + '">';
+                                    if (feature.properties.media7) popupContent += '<img  height="250px" src="' + (feature.properties['media7'] !== null ? feature.properties['media7'] : '') + '">';
+                                    if (feature.properties.media8) popupContent += '<img  height="250px" src="' + (feature.properties['media8'] !== null ? feature.properties['media8'] : '') + '">';
+                                    if (feature.properties.media9) popupContent += '<img  height="250px" src="' + (feature.properties['media9'] !== null ? feature.properties['media9'] : '') + '">';
+                                    if (feature.properties.media10) popupContent += '<img height="250px" src="' + (feature.properties['media10'] !== null ? feature.properties['media10'] : '') + '">';
+                                    if (feature.properties.media11) popupContent += '<img height="250px" src="' + (feature.properties['media11'] !== null ? feature.properties['media11'] : '') + '">';
+                                    if (feature.properties.media12) popupContent += '<img height="250px" src="' + (feature.properties['media12'] !== null ? feature.properties['media12'] : '') + '">';
+                popupContent += '</div>\
+                            </td>\
+                        </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Amphitheatres_0_0() {
+            return {
+                pane: 'pane_Amphitheatres_0',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(140,223,138,1.0)',
+            }
+        }
+        map.createPane('pane_Amphitheatres_0');
+        map.getPane('pane_Amphitheatres_0').style.zIndex = 400;
+        map.getPane('pane_Amphitheatres_0').style['mix-blend-mode'] = 'normal';
+        var layer_Amphitheatres_0 = new L.geoJson(json_Amphitheatres_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Amphitheatres_0',
+            onEachFeature: pop_Amphitheatres_0,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Amphitheatres_0_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Amphitheatres_0);
+        map.addLayer(layer_Amphitheatres_0);
+        function pop_Theatres_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">name</th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">city</th>\
+                        <td>' + (feature.properties['city'] !== null ? Autolinker.link(String(feature.properties['city'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">country</th>\
+                        <td>' + (feature.properties['country'] !== null ? Autolinker.link(String(feature.properties['country'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">located</th>\
+                        <td>' + (feature.properties['located'] !== null ? Autolinker.link(String(feature.properties['located'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">visible</th>\
+                        <td>' + (feature.properties['visible'] !== null ? Autolinker.link(String(feature.properties['visible'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">\
+                            <div class="your-class">';
+                                if (feature.properties.media) popupContent += '<img   height="250px" src="' + (feature.properties['media'] !== null ? feature.properties['media'] : '') + '">';
+                                if (feature.properties.media2) popupContent += '<img  height="250px" src="' + (feature.properties['media2'] !== null ? feature.properties['media2'] : '') + '">';
+                                if (feature.properties.media3) popupContent += '<img  height="250px" src="' + (feature.properties['media3'] !== null ? feature.properties['media3'] : '') + '">';
+                                if (feature.properties.media4) popupContent += '<img  height="250px" src="' + (feature.properties['media4'] !== null ? feature.properties['media4'] : '') + '">';
+                                if (feature.properties.media5) popupContent += '<img  height="250px" src="' + (feature.properties['media5'] !== null ? feature.properties['media5'] : '') + '">';
+                                if (feature.properties.media6) popupContent += '<img  height="250px" src="' + (feature.properties['media6'] !== null ? feature.properties['media6'] : '') + '">';
+                                if (feature.properties.media7) popupContent += '<img  height="250px" src="' + (feature.properties['media7'] !== null ? feature.properties['media7'] : '') + '">';
+                                if (feature.properties.media8) popupContent += '<img  height="250px" src="' + (feature.properties['media8'] !== null ? feature.properties['media8'] : '') + '">';
+                                if (feature.properties.media9) popupContent += '<img  height="250px" src="' + (feature.properties['media9'] !== null ? feature.properties['media9'] : '') + '">';
+                                if (feature.properties.media10) popupContent += '<img height="250px" src="' + (feature.properties['media10'] !== null ? feature.properties['media10'] : '') + '">';
+                                if (feature.properties.media11) popupContent += '<img height="250px" src="' + (feature.properties['media11'] !== null ? feature.properties['media11'] : '') + '">';
+                                if (feature.properties.media12) popupContent += '<img height="250px" src="' + (feature.properties['media12'] !== null ? feature.properties['media12'] : '') + '">';
+            popupContent += '</div>\
+                        </td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Theatres_1_0() {
+            return {
+                pane: 'pane_Theatres_1',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,72,183,1.0)',
+            }
+        }
+        map.createPane('pane_Theatres_1');
+        map.getPane('pane_Theatres_1').style.zIndex = 401;
+        map.getPane('pane_Theatres_1').style['mix-blend-mode'] = 'normal';
+        var layer_Theatres_1 = new L.geoJson(json_Theatres_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Theatres_1',
+            onEachFeature: pop_Theatres_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Theatres_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Theatres_1);
+        map.addLayer(layer_Theatres_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Theatres_1.png" /> Theatres': layer_Theatres_1,'<img src="legend/Amphitheatres_0.png" /> Amphitheatres': layer_Amphitheatres_0,},{collapsed:false}).addTo(map);
+        setBounds();
+
+        map.on('popupopen', () => {
+            $('.your-class').slick();
+        });
+        </script>
+    </body>
+</html>
